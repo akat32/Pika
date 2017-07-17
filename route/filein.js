@@ -31,6 +31,7 @@ router.post('/:filename', function(req, res, next) {
     }, function (err) {
       res.send(500, err);
     });
+    Signal = 0;
     console.log('scus!');
 });
 
