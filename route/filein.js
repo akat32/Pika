@@ -3,6 +3,7 @@ var router = express.Router();
 var Q = require('Q');
 var multer = require('multer');
 var imagePath = "./files";
+var cnt = 0;
 var upload = function (req, res) {
   var deferred = Q.defer();
   var storage = multer.diskStorage({
@@ -11,7 +12,7 @@ var upload = function (req, res) {
     },
     filename: function (req, file, cb) {
       file.uploadedFile = {
-        name: req.params.filename,
+        name: "imgae" + ++cnt,
         ext: file.mimetype.split('/')[1]
       };
       cb(null, file.uploadedFile.name + '.' + file.uploadedFile.ext);
@@ -25,13 +26,12 @@ var upload = function (req, res) {
   });
   return deferred.promise;
 };
-router.post('/:filename', function(req, res, next) {
+router.post('/', function(req, res, next) {
   upload(req, res).then(function (file) {
       res.json(file);
     }, function (err) {
       res.send(500, err);
     });
-    Signal = 0;
     console.log('scus!');
 });
 
