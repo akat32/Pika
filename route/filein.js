@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Q = require('Q');
+var Q = require('q');
 var multer = require('multer');
 var imagePath = "./files";
 var cnt = 0;
